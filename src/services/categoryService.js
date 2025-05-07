@@ -7,3 +7,13 @@ export const getAllCategories = async () => {
   const data = await get(`/${variables.pathAdmin}/categories`);
   return data;
 }
+
+export const getCategoriesTree = async () => {
+  const data = await get(`/${variables.pathAdmin}/categories/create`);
+  return data;
+}
+
+export const createCategory = async (dataSubmit) => {
+  const data = await post(`/${variables.pathAdmin}/categories`, dataSubmit);
+  return data;
+}

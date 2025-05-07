@@ -4,8 +4,9 @@ import LayoutAccount from "../components/Layouts/LayoutAccount";
 import LayoutAdmin from "../components/Layouts/LayoutAdmin";
 import LayoutDefault from "../components/Layouts/LayoutDefault"
 import PrivateRoutes from "../components/PrivateRoutes";
-import Category from "../pages/Category";
 import Dashboard from "../pages/Dashboard";
+import Category from "../pages/Category";
+import CategoryCreate from "../pages/Category/CategoryCreate";
 
 import Home from "../pages/Home";
 import Login from "../pages/Login";
@@ -56,8 +57,12 @@ export const routes = [
             element: <Dashboard />
           },
           {
-            path: "categories/",
+            path: "categories",
             element: <Category />
+          },
+          {
+            path: "categories/create",
+            element: <CategoryCreate />
           }
         ]
       }

@@ -6,7 +6,7 @@ import moment from "moment";
 
 import { FaMagnifyingGlass, FaPlus, FaRegPenToSquare, FaRegTrashCan, FaTrashCan } from "react-icons/fa6";
 
-import { data, Link } from "react-router-dom";
+import { data, Link, Outlet } from "react-router-dom";
 
 import "./Category.css";
 import { useEffect, useState } from "react";

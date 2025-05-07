@@ -481,3 +481,429 @@
 }
 
 /* End table-two */
+
+
+/* section-crud */
+
+.section-crud 
+{
+  background-color: #fff;
+  border: 1px solid #B9B9B9;
+  border-radius: 14px;
+  padding: 50px;
+}
+
+.section-crud form 
+{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+.section-crud form .inner-group 
+{
+  position: relative;
+}
+
+.section-crud form .inner-group .just-validate-error-label 
+{
+  position: absolute;
+  top: 104%;
+  left: 0;
+  font-size: 12px;
+  margin-top: 3px;
+  color: #EF3826 !important;
+}
+
+.section-crud form .inner-group .inner-label 
+{
+  display: block;
+  margin-bottom: 11px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #606060;
+}
+
+.section-crud form .inner-group input,
+.section-crud form .inner-group select,
+.section-crud form .inner-group textarea 
+{
+  background-color: #F5F6FA;
+  border: 1px solid #D5D5D5;
+  border-radius: 4px;
+  width: 100%;
+  height: 52px;
+  padding: 0 22px;
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--color-text);
+  outline: none;
+}
+
+.section-crud form .inner-group .just-validate-error-field 
+{
+  border-color: #EF3826 !important;
+}
+
+.section-crud form .inner-group .just-validate-success-field
+{
+  border-color: #00B69B !important;
+}
+
+.section-crud form .inner-group textarea 
+{
+  height: 160px;
+  padding-top: 18px;
+}
+
+.section-crud form .inner-two-columns
+{
+  grid-column: span 2;
+}
+
+.section-crud form .inner-button 
+{
+  text-align: center;
+}
+
+.section-crud form .inner-button button 
+{
+  width: 274px;
+  height: 56px;
+  background-color: var(--color-primary);
+  opacity: 0.9;
+  border: 0;
+  outline: none;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 18px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.section-crud form .inner-button button:hover 
+{
+  opacity: 1;
+}
+
+.section-crud .inner-back 
+{
+  text-align: center;
+  margin-top: 30px;
+}
+
+.section-crud .inner-back a 
+{
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+.section-crud form .inner-input-list 
+{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.section-crud form .inner-input-item 
+{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.section-crud form .inner-input-item label 
+{
+  font-weight: 600;
+  font-size: 14px;
+  color: #606060;
+  width: 89px;
+}
+
+.section-crud form .inner-input-item input 
+{
+  flex: 1;
+}
+
+.section-crud form .inner-checkbox-list 
+{
+  border: 1px solid #D5D5D5;
+  background-color: #F5F6FA;
+  border-radius: 4px;
+  padding: 14px 23px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 166px;
+  overflow-y: auto;
+}
+
+.section-crud form .inner-checkbox-item 
+{
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.section-crud form .inner-checkbox-item input 
+{
+  width: 20px;
+  height: 20px;
+  margin: 0;
+}
+
+.section-crud form .inner-checkbox-item label 
+{
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--color-text);
+}
+
+.section-crud form .inner-schedule .inner-schedule-list 
+{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.section-crud form .inner-schedule .inner-schedule-item 
+{
+  border: 1px solid #D5D5D5;
+  background-color: #fff;
+  border-radius: 4px;
+  padding: 20px;
+}
+
+.section-crud form .inner-schedule .inner-schedule-head 
+{
+  display: flex;
+  gap: 15px;
+}
+
+.section-crud form .inner-schedule .inner-schedule-button 
+{
+  width: 52px;
+  height: 52px;
+  border: 1px solid #D5D5D5;
+  background-color: #F5F6FA;
+  border-radius: 4px;
+  font-size: 18px;
+  color: #A6A6A6;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.section-crud form .inner-schedule .inner-schedule-button.inner-move 
+{
+  cursor: move;
+}
+
+.section-crud form .inner-schedule .inner-schedule-button.inner-remove 
+{
+  color: #EF3826;
+}
+
+.section-crud form .inner-schedule .inner-schedule-item.hidden .inner-schedule-button.inner-more i::before
+{
+  content: "\f106";
+}
+
+.section-crud form .inner-schedule .inner-schedule-head input 
+{
+  flex: 1;
+}
+
+.section-crud form .inner-schedule .inner-schedule-body 
+{
+  margin-top: 15px;
+}
+
+.section-crud form .inner-schedule .inner-schedule-item.hidden .inner-schedule-body
+{
+  display: none;
+}
+
+.section-crud form .inner-schedule .inner-schedule-body textarea 
+{
+  height: 300px;
+}
+
+.section-crud form .inner-schedule .inner-schedule-create 
+{
+  background-color: #D5D5D5;
+  border-radius: 4px;
+  opacity: 0.9;
+  padding: 10px 20px;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--color-text);
+  display: inline-block;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+.section-crud form .inner-schedule .inner-schedule-create i
+{
+  margin-right: 5px;
+}
+
+.section-crud form .inner-order-list 
+{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.section-crud form .inner-order-item 
+{
+  display: flex;
+  gap: 12px;
+}
+
+.section-crud form .inner-order-image 
+{
+  width: 115px;
+  height: 115px;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.section-crud form .inner-order-image img 
+{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.section-crud form .inner-order-content 
+{
+  flex: 1;
+}
+
+.section-crud form .inner-order-name 
+{
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--color-text);
+}
+
+.section-crud form .inner-order-text 
+{
+  font-weight: 600;
+  font-size: 12px;
+  color: var(--color-text);
+  margin-top: 3px;
+}
+
+.section-crud form .inner-order-total 
+{
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--color-text);
+}
+
+.section-crud form .inner-order-price 
+{
+  font-weight: 700;
+  color: #EF3826;
+}
+
+.section-crud form .inner-upload-image 
+{
+  width: 150px;
+  height: 150px;
+}
+
+.section-crud form .inner-upload-image .filepond--credits 
+{
+  display: none;
+}
+
+.section-crud form .inner-upload-image .filepond--root 
+{
+  margin-bottom: 0;
+  height: 100% !important;
+}
+
+.section-crud form .inner-upload-image .filepond--drop-label 
+{
+  min-height: 100%;
+  cursor: pointer;
+}
+
+.section-crud form .inner-upload-image .filepond--drop-label label 
+{
+  font-weight: 500;
+  font-size: 50px;
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.section-crud form .inner-upload-image .filepond--panel-root 
+{
+  border: 1px solid #D5D5D5;
+  background-color: #F5F6FA !important;
+  border-radius: 4px;
+}
+
+.section-crud form .inner-upload-image .filepond--file-info 
+{
+  display: none;
+}
+
+.section-crud form .inner-upload-image .filepond--action-remove-item 
+{
+  background: #F93C65;
+  width: 22px;
+  height: 22px;
+  top: 0;
+  left: calc(50% - 11px);
+  cursor: pointer;
+}
+
+.section-crud form .inner-upload-image-multi .filepond--root 
+{
+  width: 300px;
+  max-height: 600px;
+}
+
+/* smaller than 768 */
+@media (max-width: 767.98px)
+{
+  .section-crud
+  {
+    padding: 20px;
+  }
+
+  .section-crud form
+  {
+    grid-template-columns: 1fr;
+  }
+
+  .section-crud form .inner-two-columns
+  {
+    grid-column: span 1;
+  }
+}
+
+/* smaller than 576 */
+@media (max-width: 575.98px) 
+{
+  .section-crud form .inner-schedule .inner-schedule-head 
+  {
+    flex-wrap: wrap;
+  }
+
+  .section-crud form .inner-schedule .inner-schedule-head input 
+  {
+    flex: none;
+    width: 100%;
+    order: 1;
+  }
+}
+
+/* End section-crud */
