@@ -43,7 +43,7 @@ const Register = () => {
 
       if(dataFromBE.code == 201)
       {
-        alert("Tài khoản đã được khởi tạo. Vui lòng chờ phê duyệt của quản trị viên!");
+        alert("Account has been created. Please wait for admin approval!");
 
         // this code only navigates
         // this code does not help to reload page or else
@@ -62,70 +62,70 @@ const Register = () => {
       .addField('#firstName', [
         {
           rule: 'required',
-          errorMessage: 'Vui lòng nhập firstName!'
+          errorMessage: 'Please enter your first name!'
         },
         {
           rule: 'maxLength',
           value: 50,
-          errorMessage: 'Họ tên không được vượt quá 50 ký tự!'
+          errorMessage: 'Name must not exceed 50 characters!'
         }
       ])
       .addField('#lastName', [
         {
           rule: 'required',
-          errorMessage: 'Vui lòng nhập lastName!'
+          errorMessage: 'Please enter your last name!'
         },
         {
           rule: 'minLength',
           value: 3,
-          errorMessage: 'Họ tên phải có ít nhất 3 ký tự!'
+          errorMessage: 'Name must be at least 3 characters long!'
         },
         {
           rule: 'maxLength',
           value: 50,
-          errorMessage: 'Họ tên không được vượt quá 50 ký tự!'
+          errorMessage: 'Name must not exceed 50 characters!'
         }
       ])
       .addField('#email', [
         {
           rule: 'required',
-          errorMessage: 'Vui lòng nhập email của bạn!',
+          errorMessage: 'Please enter your email!',
         },
         {
           rule: 'email',
-          errorMessage: 'Email không đúng định dạng!',
+          errorMessage: 'Invalid email format!',
         },
       ])
       .addField('#password', [
         {
           rule: 'required',
-          errorMessage: 'Vui lòng nhập mật khẩu!',
+          errorMessage: 'Please enter your password!',
         },
         {
           validator: (value) => value.length >= 8, // arrow function
-          errorMessage: 'Mật khẩu phải chứa ít nhất 8 ký tự!',
+          errorMessage: 'Password must be at least 8 characters!',
         },
         {
           validator: (value) => /[A-Z]/.test(value),
-          errorMessage: 'Mật khẩu phải chứ ít nhất một chữ cái in hoa!',
+          errorMessage: 'Password must contain at least one uppercase letter!',
         },
         {
           validator: (value) => /[a-z]/.test(value),
-          errorMessage: 'Mật khẩu phải chứa ít nhất một chữ cái thường!',
+          errorMessage: 'Password must contain at least one lowercase letter!',
         },
         {
           validator: (value) => /\d/.test(value),
-          errorMessage: 'Mật khẩu phải chứa ít nhất một chữ số!',
+          errorMessage: 'Password must contain at least one digit!',
         },
         {
           validator: (value) => /[@$!%*?&]/.test(value),
-          errorMessage: 'Mật khẩu phải chứa ít nhất một ký tự đặc biệt!',
+          errorMessage: 'Password must contain at least one special character!',
         },
       ])
       .addField('#agreement', [
         {
           rule: 'required',
-          errorMessage: 'Bạn phải đồng ý với các điều khoản và điều kiện!',
+          errorMessage: 'You must agree to the terms and conditions!',
         },
       ])
       .onSuccess(async (event) => {
@@ -136,8 +136,8 @@ const Register = () => {
   return (
     <>
       <div className="form-account">
-        <h2 className="inner-title">Đăng ký</h2>
-        <p className="inner-description">Tạo một tài khoản để tiếp tục</p>
+        <h2 className="inner-title">Register</h2>
+        <p className="inner-description">Create an account to continue</p>
 
         <form 
           className="inner-form" 
@@ -185,7 +185,7 @@ const Register = () => {
 
           <div className="inner-group password-form">
             <label htmlFor="password" className="inner-label">
-              Mật khẩu <span className="field-required">*</span>
+              Password <span className="field-required">*</span>
             </label>
             <input
               className="inner-control"
@@ -207,20 +207,20 @@ const Register = () => {
                 id="agreement"
               />
               <label htmlFor="agreement" className="inner-label">
-                Tôi chấp nhận các điều khoản và điều kiện <span className="field-required">*</span>
+                I accept the terms and conditions <span className="field-required">*</span>
               </label>
             </div>
           </div>
 
           <button className="inner-button" type="submit">
-            Đăng ký
+            Register
           </button>
         </form>
 
         <div className="inner-more">
-          <span>Bạn đã có tài khoản?</span>
+          <span>Already have an account?</span>
           <Link to={`/admin333/account/login`}>
-            Đăng nhập
+            Login
           </Link>
         </div>
       </div>

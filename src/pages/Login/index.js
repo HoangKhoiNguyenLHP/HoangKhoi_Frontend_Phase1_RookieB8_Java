@@ -59,17 +59,17 @@ const Login = () => {
       .addField("#email", [
         {
           rule: "required",
-          errorMessage: "Vui lòng nhập email của bạn!",
+          errorMessage: "Please enter your email!",
         },
         {
           rule: "email",
-          errorMessage: "Email không đúng định dạng!",
+          errorMessage: "Invalid email format!",
         },
       ])
       .addField("#password", [
         {
           rule: "required",
-          errorMessage: "Vui lòng nhập mật khẩu!",
+          errorMessage: "Please enter your password!",
         },
       ])
       .onSuccess(async (event) => {
@@ -80,9 +80,9 @@ const Login = () => {
   return (
     <>
       <div className="form-account">
-        <h2 className="inner-title">Đăng nhập</h2>
+        <h2 className="inner-title">Login</h2>
         <p className="inner-description">
-          Vui lòng nhập email và mật khẩu để tiếp tục
+          Enter your email and password to continue
         </p>
 
         <form 
@@ -99,13 +99,13 @@ const Login = () => {
               type="email"
               name="email"
               id="email"
-              placeholder="Ví dụ: levana@gmail.com"
+              placeholder="Example: levana@gmail.com"
             />
           </div>
 
           <div className="inner-group password-form">
             <label htmlFor="password" className="inner-label">
-              Mật khẩu <span className="field-required">*</span>
+              Password <span className="field-required">*</span>
             </label>
             <input
               className="inner-control"
@@ -119,14 +119,14 @@ const Login = () => {
           </div>
 
           <button className="inner-button" type="submit">
-            Đăng nhập
+            Login
           </button>
         </form>
 
         <div className="inner-more">
-          <span>Bạn chưa có tài khoản?</span>
+          <span>Don't have an account?</span>
           <Link to={`/admin333/account/register`}>
-            Tạo tài khoản
+            Create an account
           </Link>
         </div>
       </div>
