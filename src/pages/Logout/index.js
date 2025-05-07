@@ -1,3 +1,5 @@
+import variables from "../../config/variables";
+
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { checkAuthen } from "../../actions/authen";
@@ -16,7 +18,7 @@ const Logout = () => {
       if(dataFromBE.code == 200) {
         dispatch(checkAuthen(false)); // not care about true, false
                                       // only care about changing state
-        navigate("/admin333/account/login");
+        navigate(`/${variables.pathAdmin}/account/login`);
       }
     }
 

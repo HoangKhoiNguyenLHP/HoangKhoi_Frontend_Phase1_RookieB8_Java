@@ -1,3 +1,5 @@
+import variables from "../../config/variables";
+
 import { useEffect, useState } from "react";
 import { FaRegEyeSlash, FaRegEye } from "react-icons/fa6";
 import { Link } from "react-router-dom";
@@ -45,7 +47,8 @@ const Login = () => {
       // then navgiate back to Home page
       // this code only navigates
       // this code does not help to reload page or else
-      navigate("/admin333/dashboard");
+      // navigate(`/${variables.pathAdmin}/dashboard`);
+      navigate(`/${variables.pathAdmin}/categories`);
     }
     else {
       alert("Email or password incorrect!");
@@ -125,7 +128,7 @@ const Login = () => {
 
         <div className="inner-more">
           <span>Don't have an account?</span>
-          <Link to={`/admin333/account/register`}>
+          <Link to={`/${variables.pathAdmin}/account/register`}>
             Create an account
           </Link>
         </div>

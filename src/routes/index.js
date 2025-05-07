@@ -1,7 +1,10 @@
+import variables from "../config/variables";
+
 import LayoutAccount from "../components/Layouts/LayoutAccount";
 import LayoutAdmin from "../components/Layouts/LayoutAdmin";
 import LayoutDefault from "../components/Layouts/LayoutDefault"
 import PrivateRoutes from "../components/PrivateRoutes";
+import Category from "../pages/Category";
 import Dashboard from "../pages/Dashboard";
 
 import Home from "../pages/Home";
@@ -22,7 +25,7 @@ export const routes = [
     ]
   },
   {
-    path: "/admin333/account/",
+    path: `/${variables.pathAdmin}/account/`,
     element: <LayoutAccount />,
     children: [
       {
@@ -42,7 +45,7 @@ export const routes = [
   // --- End public
   // --- Private
   {
-    path: "/admin333/",
+    path: `/${variables.pathAdmin}/`,
     element: <PrivateRoutes />,
     children: [
       {
@@ -51,10 +54,28 @@ export const routes = [
           {
             path: "dashboard",
             element: <Dashboard />
+          },
+          {
+            path: "categories",
+            element: <Category />
           }
         ]
       }
     ]
   }
+  // {
+  //   path: "/admin333/",
+  //   element: <LayoutAdmin />,
+  //   children: [
+  //     {
+  //       path: "dashboard",
+  //       element: <Dashboard />
+  //     },
+  //     {
+  //       path: "categories",
+  //       element: <Category />
+  //     }
+  //   ]
+  // }
   // --- End private
 ]

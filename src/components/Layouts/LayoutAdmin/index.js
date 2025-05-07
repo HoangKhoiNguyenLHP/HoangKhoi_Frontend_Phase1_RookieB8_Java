@@ -1,5 +1,6 @@
 import Header from "./Header";
 import MenuSider from "./MenuSider";
+import Main from "./Main";
 import "./LayoutAdmin.css";
 
 const LayoutAdmin = () => {
@@ -14,6 +15,7 @@ const LayoutAdmin = () => {
       <div className="layout-admin">
         <Header />
         <MenuSider />
+        <Main />
       </div>
     </>
   );

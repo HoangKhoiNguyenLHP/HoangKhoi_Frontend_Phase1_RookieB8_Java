@@ -1,15 +1,4 @@
-import { getCookie } from "../helpers/cookie";
-
-const token = getCookie("token");
-// console.log("my token: ", token);
-
-let initialState = false;
-
-if(token) { // if(token !== "")
-  initialState = true;
-}
-
-export const authenReducer = (currentState = initialState, action) => {
+export const authenReducer = (currentState = false, action) => {
   // console.log("action", action);
 
   switch(action.type)
