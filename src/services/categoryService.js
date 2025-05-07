@@ -3,8 +3,24 @@ import { get, del, patch, post } from "../utils/requests";
 
 import variables from "../config/variables";
 
-export const getAllCategories = async () => {
-  const data = await get(`/${variables.pathAdmin}/categories`);
+export const getAllCategories = async (keyword = "") => {
+  const url = new URL(window.location.href);
+  
+  url.searchParams.set("page", 1);
+  url.searchParams.set("limit", 50);
+  
+  if(keyword.trim()) {
+    url.searchParams.set("keyword", keyword);
+  }
+
+  // consol.log(url.herf);       // http://localhost:3000/admin333/categories?page=1&limit=50
+  //
+  const pathName = url.pathname; // /admin333/categories
+  const queryPart = url.search;  // ?page=1&limit=50
+
+
+  // const data = await get(`/${variables.pathAdmin}/categories`);
+  const data = await get(`${pathName}${queryPart}`);
   return data;
 }
 

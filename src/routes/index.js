@@ -68,7 +68,11 @@ export const routes = [
           {
             path: "categories/:id/edit",
             element: <CategoryEdit />
-          }
+          },
+          // {
+          //   path: "categories/trash",
+          //   element: <CategoryTrash />
+          // },
         ]
       }
     ]

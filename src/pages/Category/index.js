@@ -7,6 +7,7 @@ import moment from "moment";
 import { FaMagnifyingGlass, FaPlus, FaRegPenToSquare, FaRegTrashCan, FaTrashCan } from "react-icons/fa6";
 
 import { Link } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import "./Category.css";
 import { useEffect, useState } from "react";
@@ -15,11 +16,17 @@ import { deleteCategorySoft, getAllCategories } from "../../services/categorySer
 const Category = () => {
   const [listCategories, setListCategories] = useState([]);
 
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const params = new URLSearchParams(location.search);
+  const keywordFromURL = params.get("keyword") || "";
+
   // ----- Get list categories ----- //
   // separate this block of code
   // used for: reload page
   const fetchAPI = async () => {
-    const dataFromBE = await getAllCategories();
+    const dataFromBE = await getAllCategories(keywordFromURL);
     if(dataFromBE.code = 200) {
       setListCategories(dataFromBE.data.data); // do not sort here, sort in BE
     }
@@ -27,8 +34,28 @@ const Category = () => {
   
   useEffect(() => {
     fetchAPI();
-  }, []);
+  }, [keywordFromURL]); // fetch whenever keyword changes
   // ----- End get list categories ----- //
+
+
+  // ----- Search ----- //
+  const handleSearch = (event) => {
+    if (event.code === "Enter") {
+      const value = event.target.value.trim();
+      const newParams = new URLSearchParams(location.search);
+  
+      if (value) {
+        newParams.set("keyword", value);
+      } 
+      else {
+        newParams.delete("keyword");
+      }
+  
+      navigate(`${location.pathname}?${newParams.toString()}`, { replace: true });
+      // navigation updates URL and triggers component re-render due to changed keyword
+    }
+  };
+  // ----- End search ----- //
 
 
   // ----- Soft delete ----- //
@@ -57,8 +84,8 @@ const Category = () => {
               <input
                 type="text"
                 placeholder="Tìm kiếm"
-                // value={searchKeyword}
-                // onChange={(e) => setSearchKeyword(e.target.value)}
+                onKeyUp={handleSearch}
+                defaultValue={keywordFromURL}
               />
             </div>
           </div>
