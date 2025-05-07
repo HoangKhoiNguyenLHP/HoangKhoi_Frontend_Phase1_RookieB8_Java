@@ -5,9 +5,10 @@ import LayoutAdmin from "../components/Layouts/LayoutAdmin";
 import LayoutDefault from "../components/Layouts/LayoutDefault"
 import PrivateRoutes from "../components/PrivateRoutes";
 import Dashboard from "../pages/Dashboard";
-import Category from "../pages/Category";
-import CategoryCreate from "../pages/Category/CategoryCreate";
-import CategoryEdit from "../pages/Category/CategoryEdit";
+import CategoryManage from "../pages/CategoryManage";
+import CategoryCreate from "../pages/CategoryManage/CategoryCreate";
+import CategoryEdit from "../pages/CategoryManage/CategoryEdit";
+import ProductManage from "../pages/ProductManage";
 
 import Home from "../pages/Home";
 import Login from "../pages/Login";
@@ -59,7 +60,7 @@ export const routes = [
           },
           {
             path: "categories",
-            element: <Category />
+            element: <CategoryManage />
           },
           {
             path: "categories/create",
@@ -73,6 +74,10 @@ export const routes = [
           //   path: "categories/trash",
           //   element: <CategoryTrash />
           // },
+          {
+            path: "products",
+            element: <ProductManage />
+          },
         ]
       }
     ]

@@ -9,12 +9,12 @@ import { FaMagnifyingGlass, FaPlus, FaRegPenToSquare, FaRegTrashCan, FaTrashCan 
 import { Link } from "react-router-dom";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import "./Category.css";
+import "./Product.css";
 import { useEffect, useState } from "react";
-import { deleteCategorySoft, getAllCategories } from "../../services/categoryService";
+import { getAllProducts } from "../../services/productService";
 
-const Category = () => {
-  const [listCategories, setListCategories] = useState([]);
+const ProductManage = () => {
+  const [listProducts, setlistProducts] = useState([]);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -32,14 +32,14 @@ const Category = () => {
   // ----- End pagination ----- //
 
 
-  // ----- Get list categories ----- //
+  // ----- Get list products ----- //
   // separate this block of code
   // used for: reload page
   const fetchAPI = async () => {
-    const dataFromBE = await getAllCategories(keywordFromURL, pageFromURL);
+    const dataFromBE = await getAllProducts(keywordFromURL, pageFromURL);
     
     if(dataFromBE.code = 200) {
-      setListCategories(dataFromBE.data.data); // do not sort here, sort in BE
+      setlistProducts(dataFromBE.data.data); // do not sort here, sort in BE
       setTotalPages(dataFromBE.data.totalPages);
       setTotalRecords(dataFromBE.data.totalRecords);
       setSkip(dataFromBE.data.skip);
@@ -49,7 +49,7 @@ const Category = () => {
   useEffect(() => {
     fetchAPI();
   }, [keywordFromURL, pageFromURL]); // refetch when URL keyword, or URL page changes
-  // ----- End get list categories ----- //
+  // ----- End get list products ----- //
 
 
   // ----- Search ----- //
@@ -90,21 +90,21 @@ const Category = () => {
 
 
   // ----- Soft delete ----- //
-  const handleSoftDelete = async (itemId) => {
-    const dataFromBE = await deleteCategorySoft(itemId);
+  // const handleSoftDelete = async (itemId) => {
+  //   const dataFromBE = await deleteProductSoft(itemId);
     
-    if(dataFromBE.code == 200) {
-      fetchAPI(); // refresh updated data ("reload" page)
-    }
-  }
+  //   if(dataFromBE.code == 200) {
+  //     fetchAPI(); // refresh updated data ("reload" page)
+  //   }
+  // }
   // ----- End soft delete ----- //
 
 
-  // console.log(listCategories);
+  console.log(listProducts);
 
   return (
     <>
-      <h1 className="box-title">Categories management</h1>
+      <h1 className="box-title">Products management</h1>
 
       {/* section-action-tools */}
       <div className="section-action-tools">
@@ -122,13 +122,13 @@ const Category = () => {
           </div>
 
           <div className="inner-button-create">
-            <Link to={`/${variables.pathAdmin}/categories/create`}>
+            <Link to={`/${variables.pathAdmin}/products/create`}>
               <FaPlus /> Create new
             </Link>
           </div>
 
           {/* <div className="inner-button-trash">
-            <Link to={`/${variables.pathAdmin}/categories/trash`}>
+            <Link to={`/${variables.pathAdmin}/products/trash`}>
               <FaTrashCan /> Recycle bin
             </Link>
           </div> */}
@@ -136,8 +136,9 @@ const Category = () => {
       </div>
       {/* End section-action-tools */}
 
-      {/* section-table-categories-page */}
-      <div className="section-table-categories-page">
+
+      {/* section-table-products-page */}
+      <div className="section-table-products-page">
         <div className="table-two">
           <table>
             <thead>
@@ -145,7 +146,10 @@ const Category = () => {
                 <th className="inner-center">
                   <input type="checkbox" className="inner-check" name="check-all" />
                 </th>
-                <th>Category name</th>
+                <th>Product name</th>
+                <th>Thumbnail</th>
+                <th>Price</th>
+                <th>Stock</th>
                 <th className="inner-center">Position</th>
                 <th>Created on</th>
                 <th>Last updated on</th>
@@ -153,12 +157,23 @@ const Category = () => {
               </tr>
             </thead>
             <tbody>
-              {listCategories.map((item) => (
+              {listProducts.map((item) => (
                 <tr key={item.id}>
                   <td className="inner-center">
                     <input type="checkbox" className="inner-check" data-id={item.id} />
                   </td>
                   <td>{item.name}</td>
+                  <td>
+                    <img
+                      src={item.images && item.images.length > 0 ? item.images[0] : null}
+                      alt={item.name}
+                      className="inner-avatar"
+                    />
+                  </td>
+                  <td>
+                    {item.price.toLocaleString("vi-VN")}đ
+                  </td>
+                  <td>{item.stock}</td>
                   <td className="inner-center">{item.position}</td>
                   <td>
                     {/* <div>Le Van A</div> */}
@@ -175,7 +190,7 @@ const Category = () => {
                   <td>
                     <div className="inner-buttons">
                       <Link
-                        to={`/${variables.pathAdmin}/categories/${item.id}/edit`}
+                        to={`/${variables.pathAdmin}/products/${item.id}/edit`}
                         className="inner-edit"
                       >
                         <FaRegPenToSquare />
@@ -183,7 +198,7 @@ const Category = () => {
 
                       <button
                         className="inner-delete"
-                        onClick={() => handleSoftDelete(`${item.id}`)}
+                        // onClick={() => handleSoftDelete(`${item.id}`)}
                       >
                         <FaRegTrashCan />
                       </button>
@@ -195,12 +210,13 @@ const Category = () => {
           </table>
         </div>
       </div>
-      {/* End section-table-categories-page */}
+      {/* End section-table-products-page */}
+
 
       {/* section-page-control */}
       <div className="section-page-control">
         <span className="inner-label">
-          Display {skip + 1} - {skip + listCategories.length} of {totalRecords}
+          Display {skip + 1} - {skip + listProducts.length} of {totalRecords}
         </span>
 
         <select
@@ -220,4 +236,4 @@ const Category = () => {
   );
 }
 
-export default Category;
+export default ProductManage;
