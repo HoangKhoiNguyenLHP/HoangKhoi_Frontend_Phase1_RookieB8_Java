@@ -12,6 +12,8 @@ import { Editor } from '@tinymce/tinymce-react';
 import Swal from "sweetalert2";
 // --- End SweetAlert
 
+import JustValidate from "just-validate";
+
 import { createCategory, getCategoriesTree } from "../../services/categoryService";
 
 const CategoryCreate = () => {
@@ -139,6 +141,23 @@ const CategoryCreate = () => {
     // --- End old manual spinner code
   }
 
+  // ----- JustValidate ----- //
+  useEffect(() => {
+    const validation = new JustValidate("#category-create-form");
+
+    validation
+      .addField('#name', [
+        {
+          rule: 'required',
+          errorMessage: 'Please enter category name!'
+        }
+      ])
+      .onSuccess(async (event) => {
+        await handleSubmit(event);
+      })
+  }, []);
+  // ----- End JustValidate ----- //
+
   // console.log(categoryTree);
 
   return (
@@ -158,10 +177,12 @@ const CategoryCreate = () => {
         <form 
           id="category-create-form" 
           encType="multipart/form-data"
-          onSubmit={handleSubmit}
+          // onSubmit={handleSubmit}
         >
           <div className="inner-group">
-            <label htmlFor="name" className="inner-label">Category Name</label>
+            <label htmlFor="name" className="inner-label">
+              Category Name <span className="field-required">*</span>
+            </label>
             <input 
               type="text" 
               id="name" 
