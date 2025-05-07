@@ -55,6 +55,7 @@ const Login = () => {
     }
   }
 
+  // ----- JustValidate ----- //
   useEffect(() => {
     const validation = new JustValidate("#login-form");
 
@@ -79,6 +80,7 @@ const Login = () => {
         await handleSubmit(event);
       })
   }, []);
+  // ----- End JustValidate ----- //
 
   return (
     <>

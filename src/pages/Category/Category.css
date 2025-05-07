@@ -8,6 +8,279 @@
 /* End section-table-categories-page */
 
 
+/* section-action-tools */
+
+.section-action-tools 
+{
+  margin-bottom: 30px;
+}
+
+.section-action-tools .inner-wrap 
+{
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 15px 20px;
+
+  min-height: 70px;
+}
+
+.section-action-tools .inner-change-status 
+{
+  display: inline-flex;
+  flex-wrap: wrap;
+  border: 1px solid #D5D5D5;
+  background-color: #FFFFFF;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.section-action-tools .inner-change-status .inner-item 
+{
+  padding: 23.75px 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  border-right: 1px solid #D5D5D5;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--color-text);
+}
+
+.section-action-tools .inner-change-status .inner-item:last-child 
+{
+  border-right: 0;
+  transition: all 0.15s;
+}
+
+.section-action-tools .inner-change-status .inner-item:last-child:hover
+{
+  background-color: rgba(240, 240, 240, 0.8);
+  cursor: pointer;
+}
+
+.section-action-tools .inner-change-status .inner-item select 
+{
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--color-text);
+  border: 0;
+  outline: none;
+  cursor: pointer;
+}
+
+.section-action-tools .inner-change-status .inner-item button 
+{
+  font-weight: 700;
+  color: #EA0234;
+  background-color: transparent;
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  transition: background-color 0.15s;
+}
+
+.section-action-tools .inner-search 
+{
+  background-color: #fff;
+  border: 1px solid #E2E2E2;
+  border-radius: 14px;
+  padding: 0 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 15px;
+  width: 366px;
+
+  min-height: 42px;
+  height: 100%;
+}
+
+.section-action-tools .inner-search i 
+{
+  font-size: 20px;
+}
+
+.section-action-tools .inner-search input 
+{
+  border: 0;
+  font-weight: 700;
+  font-size: 14px;
+  outline: none;
+  flex: 1;
+}
+
+.section-action-tools .inner-search input::placeholder 
+{
+  color: #979797;
+}
+
+/* box-search */
+
+.box-search 
+{
+  position: relative;
+}
+
+.box-search .inner-suggest 
+{
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  max-height: 300px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  z-index: 998;
+  overflow-y: auto;
+  display: none;
+}
+
+.box-search .inner-suggest.show 
+{
+  display: block;
+}
+
+.box-search .inner-suggest .inner-item
+{
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  border-bottom: 1px solid #ddd;
+  gap: 10px;
+}
+
+.box-search .inner-suggest .inner-item:hover 
+{
+  background: #efefef;
+  text-decoration: none;
+}
+
+.box-search .inner-suggest .inner-item:last-child 
+{
+  border-bottom: 0;
+}
+
+.box-search .inner-suggest .inner-item .inner-image 
+{
+  width: 60px;
+  aspect-ratio: 1/1;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.box-search .inner-suggest .inner-item .inner-image img 
+{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.box-search .inner-suggest .inner-item .inner-info
+{
+  flex: 1;
+  /* margin-left: 10px; */
+}
+
+.box-search .inner-suggest .inner-item .inner-info .inner-title 
+{
+  /* white-space: pre-wrap; */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  margin-bottom: 5px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #4d007d;
+}
+
+/* End box-search */
+
+.section-action-tools .inner-button-create button, .section-action-tools .inner-button-create a
+{
+  background-color: var(--color-primary);
+  border-radius: 14px;
+  opacity: 0.9;
+  padding: 0 28px;
+  font-weight: 700;
+  font-size: 14px;
+  color: #fff;
+  height: 100%;
+  border: 0;
+  cursor: pointer;
+
+  min-height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: background-color 0.15s;
+}
+
+.section-action-tools .inner-button-create button i, .section-action-tools .inner-button-create a i
+{
+  margin-right: 5px;
+}
+
+.section-action-tools .inner-button-create button:hover, .section-action-tools .inner-button-create a:hover
+{
+  background-color: #004cff;;
+}
+
+.section-action-tools .inner-button-trash button, .section-action-tools .inner-button-trash a
+{
+  background-color: #EF382633;
+  border-radius: 14px;
+  opacity: 0.9;
+  padding: 0 28px;
+  font-weight: 700;
+  font-size: 14px;
+  color: #EF3826;
+  height: 100%;
+  border: 0;
+  cursor: pointer;
+
+  min-height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: all 0.15s;
+}
+
+.section-action-tools .inner-button-trash button i, .section-action-tools .inner-button-trash a i
+{
+  margin-right: 5px;
+}
+
+.section-action-tools .inner-button-trash button:hover, .section-action-tools .inner-button-trash a:hover
+{
+  background-color: rgba(255, 17, 68, 0.4);
+  color: rgb(164, 14, 0);
+}
+
+/* smaller than 992 */
+@media (max-width: 991.98px)
+{
+  .section-action-tools .inner-change-status .inner-item 
+  {
+    padding: 10px 14px;
+  }
+}
+
+/* smaller than 576 */
+@media (max-width: 575.98px) 
+{
+  .section-action-tools .inner-search 
+  {
+    width: 100%;
+  }
+}
+
+/* End section-action-tools */
+
+
 /* table-two */
 
 .table-two

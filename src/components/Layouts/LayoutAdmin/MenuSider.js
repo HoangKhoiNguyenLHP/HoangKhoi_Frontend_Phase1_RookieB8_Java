@@ -17,7 +17,7 @@ const MenuSider = () => {
                 </svg>
               </div>
               <span className="inner-label">
-                Tổng quan
+                Dashboard
               </span>
             </Link>
           </li>
@@ -29,7 +29,7 @@ const MenuSider = () => {
                 </svg>
               </div>
               <span className="inner-label">
-                Quản lý danh mục
+                Categories
               </span>
             </Link>
           </li>

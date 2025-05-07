@@ -57,6 +57,7 @@ const Register = () => {
     }
   }
 
+  // ----- JustValidate ----- //
   useEffect(() => {
     const validation = new JustValidate('#register-form');
 
@@ -134,6 +135,7 @@ const Register = () => {
         await handleSubmit(event);
       })
   }, []);
+  // ----- End JustValidate ----- //
 
   return (
     <>

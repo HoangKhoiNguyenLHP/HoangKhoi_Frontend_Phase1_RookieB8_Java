@@ -56,7 +56,7 @@ export const routes = [
             element: <Dashboard />
           },
           {
-            path: "categories",
+            path: "categories/",
             element: <Category />
           }
         ]
