@@ -3,6 +3,9 @@ import variables from "../../config/variables";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
+import { displayOptionsTree } from "../../helpers/categoryHierarchy.helper";
+import { createCategory, getCategoriesTree } from "../../services/categoryService";
+
 // --- Tinymce
 import React, { useEffect, useRef, useState } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
@@ -12,12 +15,15 @@ import { Editor } from '@tinymce/tinymce-react';
 import Swal from "sweetalert2";
 // --- End SweetAlert
 
+// --- JustValidate
 import JustValidate from "just-validate";
-
-import { createCategory, getCategoriesTree } from "../../services/categoryService";
+// --- End JustValidate
 
 const CategoryCreate = () => {
+  // --- Tinymce
   const editorRef = useRef(null);
+  // -- End tinymce
+
   const navigate = useNavigate();
   const [categoryTree, setCategoryTree] = useState([]);
 
@@ -41,26 +47,7 @@ const CategoryCreate = () => {
   // ----- End get Categories Tree ----- //
 
 
-  // ----- Display Categories Tree ----- //
-  const displayOptionsTree = (listCategories, level = 0, parent = "") => {
-    return listCategories.map(item => (
-      <React.Fragment key={item.id}>
-        <option 
-          value={item.id}
-          defaultChecked={parent == item.id ? true : false}
-        >
-          {`${"--".repeat(level)} ${item.name}`}
-        </option>
-  
-        {item.children && item.children.length > 0 &&
-          displayOptionsTree(item.children, level + 1, parent)
-        }
-      </React.Fragment>
-    ));
-  }
-  // ----- End display Categories Tree ----- //
-
-
+  // ----- Handle submit form ----- //
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -101,6 +88,27 @@ const CategoryCreate = () => {
       cancelButtonText: "Discard"
     }).then( async (result) => {
         if(result.isConfirmed) {
+          // --- Show loading spinner alert while waiting
+          Swal.fire({
+            title: "Creating category...",
+            allowOutsideClick: false,
+            didOpen: () => {
+              Swal.showLoading();
+            }
+          });
+          // --- End show loading spinner alert while waiting
+
+
+          // --- Test spinner
+          // const dataFromBE = await new Promise((resolve) => {
+          //   setTimeout(async () => {
+          //     const result = await createCategory(dataSubmit);
+          //     resolve(result);
+          //   }, 5000);
+          // });
+          // --- End test spinner
+
+
           const dataFromBE = await createCategory(dataSubmit);
 
           if(dataFromBE.code == 201) {
@@ -140,6 +148,7 @@ const CategoryCreate = () => {
     // }
     // --- End old manual spinner code
   }
+  // ----- End handle submit form ----- //
 
   // ----- JustValidate ----- //
   useEffect(() => {
@@ -190,16 +199,18 @@ const CategoryCreate = () => {
             />
           </div>
 
-          <div className="inner-group">
-            <label htmlFor="parent" className="inner-label">Parent Category</label>
-            <select 
-              id="parent" 
-              name="parent" 
-            >
-              <option value="">-- Select Category --</option>
-              {displayOptionsTree(categoryTree)}
-            </select>
-          </div>
+          {categoryTree && (
+            <div className="inner-group">
+              <label htmlFor="parent" className="inner-label">Parent Category</label>
+              <select 
+                id="parent" 
+                name="parent" 
+              >
+                <option value="">-- Select Category --</option>
+                {displayOptionsTree(categoryTree)}
+              </select>
+            </div>
+          )}
 
           <div className="inner-group">
             <label htmlFor="position" className="inner-label">Position</label>
@@ -217,7 +228,7 @@ const CategoryCreate = () => {
             <Editor
               id="description"
               name="description"
-              apiKey="ypmwfvoj1sujo1vx0j6cdkhlcv3htnptdyt11boq7zqhoe9d"
+              apiKey={process.env.REACT_APP_MCE_API_KEY}
               onInit={(evt, editor) => (editorRef.current = editor)}
               init={{
                 selector: '#description',

@@ -8,16 +8,21 @@ import { registerAccount } from "../../services/accountAdminService";
 
 import { useNavigate } from "react-router-dom";
 
+// --- JustValidate
 import JustValidate from "just-validate";
+// --- End JustValidate
 
 const Register = () => {
   const [hidePassword, setHidePassword] = useState(true);
   const navigate = useNavigate();
 
+  // ----- Handle passowrd icon ----- //
   const handleClickPasswordIcon = () => {
     setHidePassword(!hidePassword);
   }
+  // ----- End handle passowrd icon ----- //
 
+  // ----- Handle submit form ----- //
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -56,6 +61,7 @@ const Register = () => {
       }
     }
   }
+  // ----- End handle submit form ----- //
 
   // ----- JustValidate ----- //
   useEffect(() => {

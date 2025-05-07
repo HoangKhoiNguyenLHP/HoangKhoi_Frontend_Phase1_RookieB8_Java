@@ -10,17 +10,22 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { checkAuthen } from "../../actions/authen";
 
+// --- JustValidate
 import JustValidate from "just-validate";
+// --- End JustValidate
 
 const Login = () => {
   const [hidePassword, setHidePassword] = useState(true);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  // ----- Handle passowrd icon ----- //
   const handleClickPasswordIcon = () => {
     setHidePassword(!hidePassword);
   }
+  // ----- End handle passowrd icon ----- //
 
+  // ----- Handle submit form ----- //
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -54,6 +59,7 @@ const Login = () => {
       alert("Email or password incorrect!");
     }
   }
+  // ----- End handle submit form ----- //
 
   // ----- JustValidate ----- //
   useEffect(() => {

@@ -6,7 +6,7 @@ import moment from "moment";
 
 import { FaMagnifyingGlass, FaPlus, FaRegPenToSquare, FaRegTrashCan, FaTrashCan } from "react-icons/fa6";
 
-import { data, Link, Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import "./Category.css";
 import { useEffect, useState } from "react";
@@ -20,14 +20,14 @@ const Category = () => {
       const dataFromBE = await getAllCategories();
 
       if(dataFromBE.code = 200) {
-        setListCategories(dataFromBE.data.data.reverse());
+        setListCategories(dataFromBE.data.data); // do not sort here, sort in BE
       }
     }
 
     fetchAPI();
   }, []);
 
-  console.log(listCategories);
+  // console.log(listCategories);
 
   return (
     <>
@@ -102,7 +102,7 @@ const Category = () => {
                   <td>
                     <div className="inner-buttons">
                       <Link
-                        to={`/${variables.pathAdmin}/categories/edit/${item.id}`}
+                        to={`/${variables.pathAdmin}/categories/${item.id}/edit`}
                         className="inner-edit"
                       >
                         <FaRegPenToSquare />

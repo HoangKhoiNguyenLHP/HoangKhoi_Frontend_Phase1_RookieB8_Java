@@ -7,6 +7,7 @@ import PrivateRoutes from "../components/PrivateRoutes";
 import Dashboard from "../pages/Dashboard";
 import Category from "../pages/Category";
 import CategoryCreate from "../pages/Category/CategoryCreate";
+import CategoryEdit from "../pages/Category/CategoryEdit";
 
 import Home from "../pages/Home";
 import Login from "../pages/Login";
@@ -63,6 +64,10 @@ export const routes = [
           {
             path: "categories/create",
             element: <CategoryCreate />
+          },
+          {
+            path: "categories/:id/edit",
+            element: <CategoryEdit />
           }
         ]
       }
