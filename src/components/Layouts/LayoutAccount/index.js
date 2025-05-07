@@ -1,12 +1,11 @@
 import { Outlet } from "react-router-dom";
 
+import "./LayoutAccount.css";
+
 const LayoutAccount = () => {
   return (
     <>
-      <div 
-        className="min-h-screen flex justify-center items-center bg-cover bg-center bg-no-repeat py-[50px]"
-        style={{ backgroundImage: "url('/bg-account.svg')" }}
-      >
+      <div className="page-account">
         <Outlet />
       </div>
     </>

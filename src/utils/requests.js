@@ -13,6 +13,7 @@ export const post = async (path, dataSubmit) => {
     headers: {
       "Content-Type": "application/json"
     },
+    credentials: "include", // allow cookies to be set and sent with requests
     body: JSON.stringify(dataSubmit)
   });
 
