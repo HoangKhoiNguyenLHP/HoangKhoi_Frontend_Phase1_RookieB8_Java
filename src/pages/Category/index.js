@@ -19,22 +19,36 @@ const Category = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
+  // ----- Search ----- //
   const params = new URLSearchParams(location.search);
   const keywordFromURL = params.get("keyword") || "";
+  // ----- End search ----- //
+
+  // ----- Pagination ----- //
+  const [totalPages, setTotalPages] = useState(1);
+  const [totalRecords, setTotalRecords] = useState(0);
+  const [skip, setSkip] = useState(0);
+  const pageFromURL = parseInt(params.get("page") || "1");
+  // ----- End pagination ----- //
+
 
   // ----- Get list categories ----- //
   // separate this block of code
   // used for: reload page
   const fetchAPI = async () => {
-    const dataFromBE = await getAllCategories(keywordFromURL);
+    const dataFromBE = await getAllCategories(keywordFromURL, pageFromURL);
+    
     if(dataFromBE.code = 200) {
       setListCategories(dataFromBE.data.data); // do not sort here, sort in BE
+      setTotalPages(dataFromBE.data.totalPages);
+      setTotalRecords(dataFromBE.data.totalRecords);
+      setSkip(dataFromBE.data.skip);
     }
   }
   
   useEffect(() => {
     fetchAPI();
-  }, [keywordFromURL]); // fetch whenever keyword changes
+  }, [keywordFromURL, pageFromURL]); // refetch when URL keyword, or URL page changes
   // ----- End get list categories ----- //
 
 
@@ -56,6 +70,23 @@ const Category = () => {
     }
   };
   // ----- End search ----- //
+
+
+  // ----- Pagination ----- //
+  const handleChangePage = (event) => {
+    const value = event.target.value;
+    const newParams = new URLSearchParams(location.search);
+  
+    if(value) {
+      newParams.set("page", value);
+    } 
+    else {
+      newParams.delete("page");
+    }
+  
+    navigate(`${location.pathname}?${newParams.toString()}`, { replace: true });
+  };
+  // ----- End pagination ----- //
 
 
   // ----- Soft delete ----- //
@@ -83,7 +114,7 @@ const Category = () => {
               <FaMagnifyingGlass />
               <input
                 type="text"
-                placeholder="Tìm kiếm"
+                placeholder="Search for..."
                 onKeyUp={handleSearch}
                 defaultValue={keywordFromURL}
               />
@@ -96,11 +127,11 @@ const Category = () => {
             </Link>
           </div>
 
-          <div className="inner-button-trash">
+          {/* <div className="inner-button-trash">
             <Link to={`/${variables.pathAdmin}/categories/trash`}>
               <FaTrashCan /> Recycle bin
             </Link>
-          </div>
+          </div> */}
         </div>
       </div>
       {/* End section-action-tools */}
@@ -165,6 +196,26 @@ const Category = () => {
         </div>
       </div>
       {/* End section-table-categories-page */}
+
+      {/* section-page-control */}
+      <div className="section-page-control">
+        <span className="inner-label">
+          Display {skip + 1} - {skip + listCategories.length} of {totalRecords}
+        </span>
+
+        <select
+          className="inner-pagination"
+          value={pageFromURL}
+          onChange={handleChangePage}
+        >
+          {[...Array(totalPages)].map((_, index) => (
+            <option key={index + 1} value={index + 1}>
+              Page {index + 1}
+            </option>
+          ))}
+        </select>
+      </div>
+      {/* End section-page-control */}
     </>
   );
 }

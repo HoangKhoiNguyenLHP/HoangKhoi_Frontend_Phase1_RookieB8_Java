@@ -907,3 +907,34 @@
 }
 
 /* End section-crud */
+
+
+/* section-page-control */
+
+.section-page-control 
+{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.section-page-control .inner-label 
+{
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--color-text);
+}
+
+.section-page-control .inner-pagination 
+{
+  border: 1px solid #D5D5D5;
+  border-radius: 8px;
+  background-color: #FAFBFD;
+  outline: none;
+  padding: 6px 14px;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--color-text);
+}
+
+/* End section-page-control */

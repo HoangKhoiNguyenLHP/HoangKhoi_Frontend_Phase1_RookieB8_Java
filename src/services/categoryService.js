@@ -3,11 +3,11 @@ import { get, del, patch, post } from "../utils/requests";
 
 import variables from "../config/variables";
 
-export const getAllCategories = async (keyword = "") => {
+export const getAllCategories = async (keyword = "", page = 1) => {
   const url = new URL(window.location.href);
   
-  url.searchParams.set("page", 1);
-  url.searchParams.set("limit", 50);
+  url.searchParams.set("page", page);
+  url.searchParams.set("limit", 10);
   
   if(keyword.trim()) {
     url.searchParams.set("keyword", keyword);
