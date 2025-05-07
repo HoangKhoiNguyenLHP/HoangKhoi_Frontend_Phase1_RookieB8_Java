@@ -24,7 +24,7 @@ export const post = async (path, dataSubmit) => {
   return data;
 }
 
-export const myDelete = async (path) => {
+export const del = async (path) => {
   const response = await fetch((SERVER + path), {
     method: "DELETE",
     credentials: "include" // allow cookies to be set and sent with requests

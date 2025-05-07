@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { get, myDelete, patch, post } from "../utils/requests";
+import { get, del, patch, post } from "../utils/requests";
 
 import variables from "../config/variables";
 
@@ -25,5 +25,10 @@ export const createCategory = async (dataSubmit) => {
 
 export const editCategory = async (itemId, dataSubmit) => {
   const data = await patch(`/${variables.pathAdmin}/categories/${itemId}`, dataSubmit);
+  return data;
+}
+
+export const deleteCategorySoft = async (itemId) => {
+  const data = await del(`/${variables.pathAdmin}/categories/${itemId}`);
   return data;
 }

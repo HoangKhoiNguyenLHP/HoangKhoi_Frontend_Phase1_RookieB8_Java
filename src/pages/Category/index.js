@@ -10,22 +10,37 @@ import { Link } from "react-router-dom";
 
 import "./Category.css";
 import { useEffect, useState } from "react";
-import { getAllCategories } from "../../services/categoryService";
+import { deleteCategorySoft, getAllCategories } from "../../services/categoryService";
 
 const Category = () => {
   const [listCategories, setListCategories] = useState([]);
 
-  useEffect(() => {
-    const fetchAPI = async () => {
-      const dataFromBE = await getAllCategories();
-
-      if(dataFromBE.code = 200) {
-        setListCategories(dataFromBE.data.data); // do not sort here, sort in BE
-      }
+  // ----- Get list categories ----- //
+  // separate this block of code
+  // used for: reload page
+  const fetchAPI = async () => {
+    const dataFromBE = await getAllCategories();
+    if(dataFromBE.code = 200) {
+      setListCategories(dataFromBE.data.data); // do not sort here, sort in BE
     }
-
+  }
+  
+  useEffect(() => {
     fetchAPI();
   }, []);
+  // ----- End get list categories ----- //
+
+
+  // ----- Soft delete ----- //
+  const handleSoftDelete = async (itemId) => {
+    const dataFromBE = await deleteCategorySoft(itemId);
+    
+    if(dataFromBE.code == 200) {
+      fetchAPI(); // refresh updated data ("reload" page)
+    }
+  }
+  // ----- End soft delete ----- //
+
 
   // console.log(listCategories);
 
@@ -110,7 +125,7 @@ const Category = () => {
 
                       <button
                         className="inner-delete"
-                        data-api={`/${variables.pathAdmin}/categories/delete/${item.id}`}
+                        onClick={() => handleSoftDelete(`${item.id}`)}
                       >
                         <FaRegTrashCan />
                       </button>
