@@ -1,21 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
 
-:root {
+.page-account {
   --color-primary: #4880FF;
   --color-text: #202224;
 }
 
-* {
+.page-account {
   font-family: "Nunito Sans", sans-serif;
-  box-sizing: border-box;
 }
 
-body {
-  margin: 0;
-}
-
-a {
-  text-decoration: none;
+.page-account input,
+.page-account textarea,
+.page-account select,
+.page-account button {
+  font-family: "Nunito Sans", sans-serif;
 }
 
 /* page-account */
@@ -39,7 +37,7 @@ a {
 
 /* form-account */
 
-.form-account
+.page-account .form-account
 {
   width: 500px;
   background-color: #fff;
@@ -49,7 +47,7 @@ a {
   padding: 50px 30px;
 }
 
-.form-account .inner-title
+.page-account .form-account .inner-title
 {
   margin-top: 0;
   margin-bottom: 15px;
@@ -59,7 +57,7 @@ a {
   color: var(--color-text);
 }
 
-.form-account .inner-description
+.page-account .form-account .inner-description
 {
   margin-top: 0;
   margin-bottom: 30px;
@@ -70,19 +68,19 @@ a {
   opacity: 0.8;
 }
 
-.form-account .inner-form
+.page-account .form-account .inner-form
 {
   margin-bottom: 30px;
 }
 
-.form-account .inner-form .inner-group
+.page-account .form-account .inner-form .inner-group
 {
   margin-bottom: 30px;
 
   position: relative;
 }
 
-.form-account .inner-form .inner-group .just-validate-error-label 
+.page-account .form-account .inner-form .inner-group .just-validate-error-label 
 {
   position: absolute;
   top: 104%;
@@ -92,7 +90,7 @@ a {
   margin-top: 3px;
 }
 
-.form-account .inner-form .inner-group .inner-label
+.page-account .form-account .inner-form .inner-group .inner-label
 {
   display: block;
   font-size: 16px;
@@ -102,7 +100,7 @@ a {
   margin-bottom: 15px;
 }
 
-.form-account .inner-form .inner-group .inner-control
+.page-account .form-account .inner-form .inner-group .inner-control
 {
   width: 100%;
   height: 56px;
@@ -118,23 +116,23 @@ a {
   transition: box-shadow 0.25s;
 }
 
-.form-account .inner-form .inner-group .inner-control:focus
+.page-account .form-account .inner-form .inner-group .inner-control:focus
 {
   border: 1px solid #80bdff;
   box-shadow: 0 0 0 .2rem rgba(0, 123, 255, .25);
 }
 
-.form-account .inner-form .inner-group .inner-control::placeholder
+.page-account .form-account .inner-form .inner-group .inner-control::placeholder
 {
   color: #A6A6A6;
 }
 
-.form-account .inner-group .inner-control.just-validate-error-field 
+.page-account .form-account .inner-group .inner-control.just-validate-error-field 
 {
   border-color: #EF3826 !important;
 }
 
-.form-account .inner-group .inner-control.just-validate-success-field 
+.page-account .form-account .inner-group .inner-control.just-validate-success-field 
 {
   border-color: #00B69B !important;
 }
@@ -145,7 +143,7 @@ a {
   position: relative;
 }
 
-.form-account .password-form .password-icon
+.page-account .form-account .password-form .password-icon
 {
   position: absolute;
   font-size: 1.22222em;
@@ -163,14 +161,14 @@ a {
   cursor: pointer;
 }
 
-.form-account .inner-form .inner-meta
+.page-account .form-account .inner-form .inner-meta
 {
   display: flex;
   justify-content: space-between;
   margin-bottom: 30px;
 }
 
-.form-account .inner-form .inner-meta .inner-confirm
+.page-account .form-account .inner-form .inner-meta .inner-confirm
 {
   display: inline-flex;
   align-items: center;
@@ -179,7 +177,7 @@ a {
   position: relative;
 }
 
-.form-account .inner-form .inner-meta .inner-confirm .just-validate-error-label
+.page-account .form-account .inner-form .inner-meta .inner-confirm .just-validate-error-label
 {
   position: absolute;
   top: 104%;
@@ -189,13 +187,13 @@ a {
   margin-top: 3px;
 }
 
-.form-account .inner-form .inner-meta .inner-confirm .inner-check
+.page-account .form-account .inner-form .inner-meta .inner-confirm .inner-check
 {
   width: 24px;
   height: 24px;
 }
 
-.form-account .inner-form .inner-meta .inner-confirm .inner-label
+.page-account .form-account .inner-form .inner-meta .inner-confirm .inner-label
 {
   font-size: 16px;
   font-weight: 600;
@@ -203,7 +201,7 @@ a {
   opacity: 0.6;
 }
 
-.form-account .inner-form .inner-forgot-password
+.page-account .form-account .inner-form .inner-forgot-password
 {
   font-size: 16px;
   font-weight: 600;
@@ -211,13 +209,13 @@ a {
   opacity: 0.6;
 }
 
-.form-account .inner-form .inner-forgot-password:hover
+.page-account .form-account .inner-form .inner-forgot-password:hover
 {
   color: var(--color-primary);
   opacity: 1;
 }
 
-.form-account .inner-form .inner-button
+.page-account .form-account .inner-form .inner-button
 {
   width: 100%;
   height: 56px;
@@ -232,17 +230,17 @@ a {
   cursor: pointer;
 }
 
-.form-account .inner-form .inner-button:hover
+.page-account .form-account .inner-form .inner-button:hover
 {
   opacity: 1;
 }
 
-.form-account .inner-more
+.page-account .form-account .inner-more
 {
   text-align: center;
 }
 
-.form-account .inner-more span
+.page-account .form-account .inner-more span
 {
   font-size: 16px;
   font-weight: 600;
@@ -250,7 +248,7 @@ a {
   opacity: 0.65;
 }
 
-.form-account .inner-more a
+.page-account .form-account .inner-more a
 {
   font-size: 16px;
   font-weight: 700;
@@ -262,17 +260,17 @@ a {
 /* smaller than 992 */
 @media (max-width: 991.98px)
 {
-  .form-account .inner-form .inner-group .inner-label
+  .page-account .form-account .inner-form .inner-group .inner-label
   {
     margin-bottom: 10px;
   }
 
-  .form-account .inner-form .password-form .password-icon
+  .page-account .form-account .inner-form .password-form .password-icon
   {
     top: 2.49999em;
   }
 
-  .form-account .inner-form .inner-meta .inner-confirm .inner-check
+  .page-account .form-account .inner-form .inner-meta .inner-confirm .inner-check
   {
     width: 18px;
     height: 18px;
@@ -282,7 +280,7 @@ a {
 /* smaller than 576 */
 @media (max-width: 575.98px)
 {
-  .form-account
+  .page-account .form-account
   {
     width: 90%;
   }

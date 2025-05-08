@@ -99,7 +99,7 @@ const ProductEdit = () => {
 
 
   // ----- Handle submit form ----- //
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event, currFiles) => {
     event.preventDefault();
 
     const name = event.target.name.value;
@@ -124,43 +124,48 @@ const ProductEdit = () => {
     formData.append("description", description);
 
 
-// Process FilePond files
-  const currentFiles = files;
-  const currentFileNames = currentFiles
-    .filter(f => f.file) // only real files
-    .map(f => f.file.name);
+    // Process FilePond files
+    const currentFiles = currFiles;
+    const currentFileNames = currentFiles
+      .filter(f => f.file) // only real files
+      .map(f => f.file.name);
 
-  let shouldUpload = false;
+    // console.log(name);
+    // console.log(parent);
+    // console.log(position);
+    // console.log(currentFiles);
 
-  // Check count mismatch
-  if (currentFileNames.length !== defaultImageUrls.length) {
-    shouldUpload = true;
-  } 
-  else {
-    // Check for any file not matching existing URLs
-    for (let name of currentFileNames) {
-      const matched = defaultImageUrls.some(url => url.includes(name));
-      if (!matched) {
-        shouldUpload = true;
-        break;
+    let shouldUpload = false;
+
+    // Check count mismatch
+    if (currentFileNames.length !== defaultImageUrls.length) {
+      shouldUpload = true;
+    } 
+    else {
+      // Check for any file not matching existing URLs
+      for (let name of currentFileNames) {
+        const matched = defaultImageUrls.some(url => url.includes(name));
+        if (!matched) {
+          shouldUpload = true;
+          break;
+        }
       }
     }
-  }
 
-  // Append new files only if needed
-  if (shouldUpload) {
-    currentFiles.forEach(fileItem => {
-      console.log("Chay vao day 1: ")
-      formData.append("images", fileItem.file);
-    });
-  } 
-  else {
-    // No change, preserve old image URLs
-    defaultImageUrls.forEach(url => {
-      console.log("Chay vao day 2:")
-      formData.append("existingImageUrls", url);
-    });
-  }
+    // Append new files only if needed
+    if (shouldUpload) {
+      currentFiles.forEach(fileItem => {
+        console.log("Chay vao day 1: ")
+        formData.append("images", fileItem.file);
+      });
+    } 
+    else {
+      // No change, preserve old image URLs
+      defaultImageUrls.forEach(url => {
+        console.log("Chay vao day 2:")
+        formData.append("existingImageUrls", url);
+      });
+    }
 
     Swal.fire({
       title: "Save changes?",
@@ -203,9 +208,16 @@ const ProductEdit = () => {
   // ----- End handle submit form ----- //
 
   // ----- JustValidate ----- //
+  const validatorRef = useRef(null);
+
   useEffect(() => {
+    if (validatorRef.current) {
+      validatorRef.current.destroy();
+    }
+  
     const validation = new JustValidate("#product-edit-form");
-    
+    validatorRef.current = validation;
+
     validation
       .addField('#name', [
         {
@@ -220,10 +232,28 @@ const ProductEdit = () => {
           errorMessage: 'Price cannot be negative!'
         }
       ])
-      .onSuccess(async (event) => {
-        await handleSubmit(event);
+      .addField('#stock', [
+        {
+          rule: 'number',
+          errorMessage: 'Stock must be a number!'
+        },
+        {
+          rule: 'minNumber',
+          value: 0,
+          errorMessage: 'Stock cannot be negative!'
+        }
+      ])
+      .onSuccess((event) => {
+        event.preventDefault();
+        handleSubmit(event, files);
       })
-  }, []);
+
+      return () => {
+        if (validatorRef.current) {
+          validatorRef.current.destroy();
+        }
+      };
+  }, [files]); // important
   // ----- End JustValidate ----- //
 
   return (
@@ -295,7 +325,7 @@ const ProductEdit = () => {
             </div>
 
             <div className="inner-group inner-two-columns">
-              <label htmlFor="images" className="inner-label">Images</label>
+              <label className="inner-label">Images</label>
               <FilePond
                 files={files}
                 onupdatefiles={setFiles}

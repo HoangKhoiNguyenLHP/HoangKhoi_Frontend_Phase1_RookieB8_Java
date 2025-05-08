@@ -31,13 +31,14 @@ registerPlugin(FilePondPluginImagePreview, FilePondPluginFileValidateType);
 const ProductCreate = () => {
   // --- Tinymce
   const editorRef = useRef(null);
-  // -- End tinymce
+  // --- End tinymce
 
   const navigate = useNavigate();
   const [categoryTree, setCategoryTree] = useState([]);
 
-  const [files, setFiles] = useState([]); // filePond
-
+  // --- FilePond
+  const [files, setFiles] = useState([]);
+  // --- End FilePond
 
   // ----- Get Categories Tree ----- //
   useEffect(() => {
@@ -55,7 +56,7 @@ const ProductCreate = () => {
 
 
   // ----- Handle submit form ----- //
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event, currentFiles) => {
     event.preventDefault();
   
     const name = event.target.name.value;
@@ -78,8 +79,10 @@ const ProductCreate = () => {
     formData.append("stock", stock);
     formData.append("isFeatured", isFeatured);
     formData.append("description", description);
-  
-    files.forEach(fileItem => {
+
+
+    // console.log(currentFiles);
+    currentFiles.forEach(fileItem => {
       formData.append("images", fileItem.file);
     });
   
@@ -130,8 +133,15 @@ const ProductCreate = () => {
   // ----- End handle submit form ----- //
 
   // ----- JustValidate ----- //
+  const validatorRef = useRef(null);
+
   useEffect(() => {
+    if (validatorRef.current) {
+      validatorRef.current.destroy();
+    }
+  
     const validation = new JustValidate("#product-create-form");
+    validatorRef.current = validation;
 
     validation
       .addField('#name', [
@@ -147,10 +157,28 @@ const ProductCreate = () => {
           errorMessage: 'Price cannot be negative!'
         }
       ])
-      .onSuccess(async (event) => {
-        await handleSubmit(event);
+      .addField('#stock', [
+        {
+          rule: 'number',
+          errorMessage: 'Stock must be a number!'
+        },
+        {
+          rule: 'minNumber',
+          value: 0,
+          errorMessage: 'Stock cannot be negative!'
+        }
+      ])
+      .onSuccess((event) => {
+        event.preventDefault();
+        handleSubmit(event, files);
       })
-  }, []);
+
+      return () => {
+        if (validatorRef.current) {
+          validatorRef.current.destroy();
+        }
+      };
+  }, [files]); // important
   // ----- End JustValidate ----- //
 
   return (
@@ -215,7 +243,7 @@ const ProductCreate = () => {
           </div>
 
           <div className="inner-group inner-two-columns">
-            <label htmlFor="images" className="inner-label">Images</label>
+            <label className="inner-label">Images</label>
             <FilePond
               files={files}
               onupdatefiles={setFiles}

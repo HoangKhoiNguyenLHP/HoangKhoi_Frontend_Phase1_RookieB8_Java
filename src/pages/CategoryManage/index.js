@@ -9,7 +9,6 @@ import { FaMagnifyingGlass, FaPlus, FaRegPenToSquare, FaRegTrashCan, FaTrashCan 
 import { Link } from "react-router-dom";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import "./Category.css";
 import { useEffect, useState } from "react";
 import { deleteCategorySoft, getAllCategories } from "../../services/categoryService";
 
