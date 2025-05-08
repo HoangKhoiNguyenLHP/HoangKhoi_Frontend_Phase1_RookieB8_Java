@@ -100,7 +100,7 @@ const ProductManage = () => {
   // ----- End soft delete ----- //
 
 
-  console.log(listProducts);
+  // console.log(listProducts);
 
   return (
     <>

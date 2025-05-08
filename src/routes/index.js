@@ -9,6 +9,7 @@ import CategoryManage from "../pages/CategoryManage";
 import CategoryCreate from "../pages/CategoryManage/CategoryCreate";
 import CategoryEdit from "../pages/CategoryManage/CategoryEdit";
 import ProductManage from "../pages/ProductManage";
+import ProductCreate from "../pages/ProductManage/ProductCreate";
 
 import Home from "../pages/Home";
 import Login from "../pages/Login";
@@ -77,6 +78,10 @@ export const routes = [
           {
             path: "products",
             element: <ProductManage />
+          },
+          {
+            path: "products/create",
+            element: <ProductCreate />
           },
         ]
       }

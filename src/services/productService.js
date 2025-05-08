@@ -23,3 +23,9 @@ export const getAllProducts = async (keyword = "", page = 1) => {
   const data = await get(`${pathName}${queryPart}`);
   return data;
 }
+
+// -- cannot use because this is application/json, while we use multipart/formdata to send
+// export const createProduct = async (dataSubmit) => {
+//   const data = await post(`/${variables.pathAdmin}/products`, dataSubmit);
+//   return data;
+// }
