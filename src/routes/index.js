@@ -10,11 +10,13 @@ import CategoryCreate from "../pages/CategoryManage/CategoryCreate";
 import CategoryEdit from "../pages/CategoryManage/CategoryEdit";
 import ProductManage from "../pages/ProductManage";
 import ProductCreate from "../pages/ProductManage/ProductCreate";
+import ProductEdit from "../pages/ProductManage/ProductEdit";
 
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Logout from "../pages/Logout";
 import Register from "../pages/Register";
+
 
 export const routes = [
   // --- Public
@@ -82,6 +84,10 @@ export const routes = [
           {
             path: "products/create",
             element: <ProductCreate />
+          },
+          {
+            path: "products/:id/edit",
+            element: <ProductEdit />
           },
         ]
       }

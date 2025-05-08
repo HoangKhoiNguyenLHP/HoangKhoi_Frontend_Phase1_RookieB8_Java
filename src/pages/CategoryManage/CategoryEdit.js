@@ -24,7 +24,6 @@ const CategoryEdit = () => {
   const editorRef = useRef(null);
   // -- End tinymce
 
-  const navigate = useNavigate();
   const params = useParams();
   const [categoryDetail, setCategoryDetail] = useState({});
   const [selectedParent, setSelectedParent] = useState("");
@@ -158,7 +157,6 @@ const CategoryEdit = () => {
 
   return (
     <>
-
       <h1 className="box-title">Edit Category</h1>
 
       {categoryDetail && (

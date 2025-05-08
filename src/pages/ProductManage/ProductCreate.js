@@ -54,6 +54,7 @@ const ProductCreate = () => {
   // ----- End get Categories Tree ----- //
 
 
+  // ----- Handle submit form ----- //
   const handleSubmit = async (event) => {
     event.preventDefault();
   
@@ -114,7 +115,7 @@ const ProductCreate = () => {
 
         const dataFromBE = await response.json();
   
-        if (dataFromBE.code == 201) {
+        if(dataFromBE.code == 201) {
           await Swal.fire({
             title: "Create successfully!",
             text: "Your product has been saved.",
@@ -126,6 +127,31 @@ const ProductCreate = () => {
       }
     });
   }
+  // ----- End handle submit form ----- //
+
+  // ----- JustValidate ----- //
+  useEffect(() => {
+    const validation = new JustValidate("#product-create-form");
+
+    validation
+      .addField('#name', [
+        {
+          rule: 'required',
+          errorMessage: 'Please enter product name!'
+        }
+      ])
+      .addField('#price', [
+        {
+          rule: 'minNumber',
+          value: 0,
+          errorMessage: 'Price cannot be negative!'
+        }
+      ])
+      .onSuccess(async (event) => {
+        await handleSubmit(event);
+      })
+  }, []);
+  // ----- End JustValidate ----- //
 
   return (
     <>
@@ -135,7 +161,7 @@ const ProductCreate = () => {
         <form 
           id="product-create-form" 
           encType="multipart/form-data"
-          onSubmit={handleSubmit}
+          // onSubmit={handleSubmit}
         >
           <div className="inner-group">
             <label htmlFor="name" className="inner-label">
