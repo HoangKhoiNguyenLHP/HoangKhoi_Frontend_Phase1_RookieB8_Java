@@ -560,9 +560,6 @@ body .layout-default
 .layout-default .relative.group:hover > ul {
   display: block;
 }
-.layout-default ul {
-  display: none;
-}
 
 .layout-default .header .inner-cart a
 {

@@ -1,6 +1,7 @@
 import Header from "./Header";
 import Main from "./Main";
 import "./LayoutDefault.css";
+import Footer from "./Footer";
 
 const LayoutDefault = () => {
   return (
@@ -8,8 +9,7 @@ const LayoutDefault = () => {
       <div className="layout-default">
         <Header />
         <Main />
-        {/* <Footer /> */}
-        Footer
+        <Footer />
       </div>
     </>
   );

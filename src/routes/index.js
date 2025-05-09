@@ -11,6 +11,7 @@ import CategoryEdit from "../pages/CategoryManage/CategoryEdit";
 import ProductManage from "../pages/ProductManage";
 import ProductCreate from "../pages/ProductManage/ProductCreate";
 import ProductEdit from "../pages/ProductManage/ProductEdit";
+import ProductsByCategory from "../pages/ProductsByCategory";
 
 import Home from "../pages/Home";
 import Login from "../pages/Login";
@@ -27,6 +28,10 @@ export const routes = [
       {
         index: true,
         element: <Home />
+      },
+      {
+        path: `categories/:slug`,
+        element: <ProductsByCategory />
       }
     ]
   },

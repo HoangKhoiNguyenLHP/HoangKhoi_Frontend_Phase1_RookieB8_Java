@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { FaBars } from "react-icons/fa";
 import CategoryMenu from "../../CategoryMenu/CategoryMenu";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [categoryTree, setCategoryTree] = useState([]);
@@ -16,7 +17,7 @@ const Header = () => {
       .catch(err => console.error("Fetch error:", err));
   }, []);
 
-  console.log(categoryTree);
+  // console.log(categoryTree);
 
   return (
     <>
@@ -46,16 +47,16 @@ const Header = () => {
               <FaBars />
             </button>
             <div className="inner-logo">
-              <a href="index.html">
+              <Link to="/">
                 <img src="/logo.png" alt="Logo" />
-              </a>
+              </Link>
             </div>
             <nav className="inner-menu menu-sider">
               <ul>
                 <li>
-                  <a href="index.html" className="active">
+                  <Link to="/" className="active">
                     Trang Chủ
-                  </a>
+                  </Link>
                 </li>
                 <CategoryMenu categories={categoryTree} />
               </ul>
