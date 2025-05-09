@@ -557,6 +557,13 @@ body .layout-default
   color: #FFFFFF;
 }
 
+.layout-default .relative.group:hover > ul {
+  display: block;
+}
+.layout-default ul {
+  display: none;
+}
+
 .layout-default .header .inner-cart a
 {
   display: inline-flex;

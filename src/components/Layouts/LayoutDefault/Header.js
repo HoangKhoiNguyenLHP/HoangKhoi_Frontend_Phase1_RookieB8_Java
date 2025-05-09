@@ -1,6 +1,23 @@
+import { useState, useEffect } from "react";
 import { FaBars } from "react-icons/fa";
+import CategoryMenu from "../../CategoryMenu/CategoryMenu";
 
 const Header = () => {
+  const [categoryTree, setCategoryTree] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:8080/api/client/categories") // adjust base URL as needed
+      .then(res => res.json())
+      .then(data => {
+        if (data.code === 200) {
+          setCategoryTree(data.data);
+        }
+      })
+      .catch(err => console.error("Fetch error:", err));
+  }, []);
+
+  console.log(categoryTree);
+
   return (
     <>
       {/* Top header */}
@@ -40,72 +57,7 @@ const Header = () => {
                     Trang Chủ
                   </a>
                 </li>
-                <li>
-                  <a href="#">
-                    Tour Trong Nước
-                  </a>
-                  <i className="fa-solid fa-caret-down"></i>
-                  <ul>
-                    <li>
-                      <a href="#">
-                          Tour Miền Bắc
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                          Tour Miền Trung
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                          Tour Miền Nam
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                          Tour Xuyên Việt
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <a href="#">
-                    Tour Nước Ngoài
-                  </a>
-                  <i className="fa-solid fa-caret-down"></i>
-                  <ul>
-                    <li>
-                      <a href="#">
-                        Tour Châu Á
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Tour Châu Âu
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Tour Châu Mỹ
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Tour Châu Úc
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <a href="#">
-                    Tin Tức
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    Liên Hệ
-                  </a>
-                </li>
+                <CategoryMenu categories={categoryTree} />
               </ul>
               <div className="inner-overlay"></div>
             </nav>
