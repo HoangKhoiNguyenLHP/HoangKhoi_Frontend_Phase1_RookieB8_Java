@@ -3,11 +3,7 @@ import { Outlet } from "react-router-dom";
 const Main = () => {
   return (
     <>
-      <main className="layout-default__main">
-        <div className="container">
-          <Outlet />
-        </div>
-      </main>
+      <Outlet />
     </>
   );
 }

@@ -74,7 +74,7 @@ const ProductEdit = () => {
       {
         setProductDetail(data.data);
 
-        setDefaultImageUrls(data.data.images);
+        setDefaultImageUrls(data.data.images || []);
 
         if(data.data.images) {
           setFiles(
@@ -138,7 +138,7 @@ const ProductEdit = () => {
     let shouldUpload = false;
 
     // Check count mismatch
-    if (currentFileNames.length !== defaultImageUrls.length) {
+    if (currentFileNames.length !== (defaultImageUrls?.length || 0)) {
       shouldUpload = true;
     } 
     else {
